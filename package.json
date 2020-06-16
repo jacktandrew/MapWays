@@ -1,0 +1,19 @@
+{
+  "name": "MapWays",
+  "version": "1.0.0",
+  "description": "Route finding on maps using complex polygons",
+  "main": "utils.js",
+  "scripts": {},
+  "dependencies": {
+    "jimp": "^0.13.0",
+    "pathfinding": "^0.4.18"
+  },
+  "keywords": [
+    "pathfinding"
+  ],
+  "author": {
+    "name": "Jack Andrew",
+    "email": "JackTAndrew@gmail.com"
+  },
+  "license": "ISC"
+}
