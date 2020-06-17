@@ -3,7 +3,7 @@
 ## Inputs
 
 ### Destinations
-A list objects containing the keys `name`, `latitude`, `longitude` and `place_id` that represent the start and end of the desired journeys.
+A list objects containing the keys `name`, `latitude`, `longitude` and `place_id` that represent the start and end of the desired journeys. The `place_id` can be found using Google's Places [Placeid Finder](https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder)
 
     [
       {
@@ -34,32 +34,20 @@ A list of lists of objects with latitude and longitude the trace the outline of 
 
     [
       [{"longitude":-121.20514,"latitude":47.60175}...],
-      [{"longitude":-121.20514,"latitude":47.60175}...],
-      [{"longitude":-121.20514,"latitude":47.60175}...]
+      [{"longitude":-122.29062,"latitude":47.64669}...],
+      [{"longitude":-122.29711,"latitude":47.64574}...]
     ]
 
-### Matrix
-A 2D representation of the map in the form of a two dimensional binary grid.
+### Png
+The spacial data in image form, it is created by the method `saveMatrixAsPng`
 
 ### Size
 The width of grid used for pathfinding. If no size is specified it will default to 800.
 
 ## Outputs
 
-### Matrix
-The path finding is done on a representation of the map in the form of a two dimensional binary grid. Creating the grid is time intensive so to improve performance save the output of the method `saveMatrix` save a copy of the matrix to pass into the method `findRoutes`
-
-    [
-      [1,1,0,0,0,0,0,1,1,1],
-      [1,0,0,0,0,0,0,1,1,1],
-      [1,0,0,0,1,1,0,0,1,1],
-      [1,1,0,0,0,1,1,1,0,1],
-      [1,1,1,0,0,0,1,1,0,1],
-      [1,1,1,1,0,1,1,1,0,1],
-      [1,1,1,0,0,1,1,0,1,1],
-      [1,1,1,0,0,0,0,0,1,1],
-      [1,1,1,1,0,0,0,0,1,1],
-      [1,1,1,1,1,1,1,1,1,1]
-    ]
+### Png
+The path finding requires a two dimensional binary grid. Creating the grid is time intensive, for best results use `saveMatrixAsPng` to save a copy of the matrix ahead of time. This png can be to pass into the method `findRoutes`
 
 ### Routes
+An array of objects with the keys `latitude` and `longitude` that describe the route from two desired points inside the polgon.

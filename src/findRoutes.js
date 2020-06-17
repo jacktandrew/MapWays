@@ -34,7 +34,7 @@ const getMatrix = async ({ png, polygon, holes, size }) => {
   if (png) {
     return await convertPngToMatrix(png)
   } else {
-    return convertLatLngToMatrix({ polygon, holes, size })
+    return convertLatLngToMatrix(polygon, holes, size)
   }
 }
 
