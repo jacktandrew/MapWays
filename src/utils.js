@@ -1,5 +1,3 @@
-const fs = require('fs')
-
 const pointInPolygon = (point, vertices) => {
   const x = point[0]
   const y = point[1]
@@ -41,7 +39,7 @@ const convertCoordsToMatrix = (polygonCoords, holeCoords, xRange, yRange) => {
     process.stdout.write(`  ${percent}% complete\r`)
   }
 
-  process.stdout.write('Done!')
+  process.stdout.write('Done!\n')
 
   return binaryGrid
 }

@@ -16,7 +16,7 @@ const convertPngToMatrix = async (png) => {
 
   for (i = 0; i < data.length; i += 4) {
     digit = data[i]
-    boole = (digit === 255) ? '0' : '1'
+    boole = (digit === 255) ? 0 : 1
     y = Math.floor(i / limit)
     x = (i % limit) / 4
     row.push(boole)
@@ -44,7 +44,7 @@ const findRoutes = async ({ polygon, holes, png, destinations, size = 800 }) => 
   const { coords } = convertLatLngToCoords(latLngs, size)
   const destinationCoords = coords.slice(0, destinations.length)
   // Ensure each launch is on a free space
-  destinationCoords.forEach(([x, y]) => { matrix[y][x] = '0' })
+  destinationCoords.forEach(([x, y]) => { matrix[y][x] = 0 })
 
   const grid = new PF.Grid(matrix)
   const finder = new PF.BiAStarFinder({
@@ -59,13 +59,13 @@ const findRoutes = async ({ polygon, holes, png, destinations, size = 800 }) => 
 
     const route = destinationCoords.reduce((acc, finish, j) => {
       const gridClone = grid.clone()
-      const key = destinations[j].place_id
+      const destinationName = destinations[j].name
       if (i === j) return acc
       const path = finder.findPath(...start, ...finish, gridClone)
       if (path.length) {
         const smoothPath = PF.Util.smoothenPath(gridClone, path)
         const coords = convertCoordsToLatLng(smoothPath, destinations[i], destinations[j])
-        return { ...acc, [key]: coords }
+        return { ...acc, [`${name} -> ${destinationName}`]: coords }
       } else {
         return acc
       }

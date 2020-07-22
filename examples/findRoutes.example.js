@@ -6,12 +6,18 @@ const polygon = require('./polygon')
 const holesMap = require('./holes')
 
 const holes = Object.values(holesMap)
-// const png = './lake_washington.png'
+const png = './lake_washington.png'
 const size = 1000
 
-const init = async () => {
+const fromPolygon = async () => {
   const routes = await findRoutes({ destinations, holes, polygon, size })
-  console.log('routes', routes)
+  routes.forEach(route => console.log(JSON.stringify(route, null, 2)))
 }
 
-init()
+const fromPng = async () => {
+  const routes = await findRoutes({ destinations, png, polygon })
+  routes.forEach(route => console.log(JSON.stringify(route, null, 2)))
+}
+
+fromPng()
+// fromPolygon()
